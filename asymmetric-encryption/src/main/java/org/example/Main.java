@@ -55,13 +55,13 @@ public class Main {
     private static PublicKey managePublicKey(KeyPair keyPair) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
         PublicKey publicKey = keyPair.getPublic();
 
-        try (FileOutputStream fos = new FileOutputStream("public.key")) {
+        try (FileOutputStream fos = new FileOutputStream("public-key.crt")) {
             fos.write(publicKey.getEncoded());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        File publicKeyFile = new File("public.key");
+        File publicKeyFile = new File("public-key.crt");
         byte[] publicKeyBytes = Files.readAllBytes(publicKeyFile.toPath());
 
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
